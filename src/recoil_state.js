@@ -1,5 +1,6 @@
 import { atom, selector } from 'recoil';
 import { RecoilAtomKeys } from './stores/recoilKeys';
+import { RecoilSelectorKeys } from './stores/recoilKeys';
 
 const todoListState = atom({
   key: RecoilAtomKeys.TODO_LIST_STATE,
@@ -12,7 +13,7 @@ const todoListFilterState = atom({
 });
 
 const filteredTodoListState = selector({
-  key: 'filteredTodoListState',
+  key: RecoilSelectorKeys.FILTERED_TODO_LIST_STATE,
   get: ({ get }) => {
     const filter = get(todoListFilterState);
     const list = get(todoListState);
