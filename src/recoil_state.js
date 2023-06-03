@@ -1,7 +1,8 @@
 import { atom, selector } from 'recoil';
+import { RecoilAtomKeys } from './stores/recoilKeys';
 
 const todoListState = atom({
-  key: 'todoListState',
+  key: RecoilAtomKeys.TODO_LIST_STATE,
   default: [],
 });
 
