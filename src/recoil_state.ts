@@ -7,7 +7,7 @@ const todoListState = atom({
   default: [],
 });
 
-const todoListFilterState = atom({
+const todoListFilterState = atom<string>({
   key: 'todoListFilterState',
   default: 'Show All',
 });
@@ -20,9 +20,9 @@ const filteredTodoListState = selector({
 
     switch (filter) {
       case 'Show Completed':
-        return list.filter((item) => item.isComplete);
+        return list.filter((item: any) => item.isComplete);
       case 'Show Uncompleted':
-        return list.filter((item) => !item.isComplete);
+        return list.filter((item: any) => !item.isComplete);
       default:
         return list;
     }
@@ -34,11 +34,13 @@ const todoListStatsState = selector({
   get: ({ get }) => {
     const todoList = get(todoListState);
     const totalNum = todoList.length;
-    const totalCompletedNum = todoList.filter((item) => item.isComplete).length;
+    const totalCompletedNum = todoList.filter(
+      (item: any) => item.isComplete
+    ).length;
     let allText = '';
     todoList
-      .filter((item) => !item.isComplete)
-      .map((item) => (allText = allText + ' ' + item.text));
+      .filter((item: any) => !item.isComplete)
+      .map((item: any) => (allText = allText + ' ' + item.text));
 
     const totalUncompletedNum = totalNum - totalCompletedNum;
     const percentCompleted = totalNum === 0 ? 0 : totalCompletedNum / totalNum;
